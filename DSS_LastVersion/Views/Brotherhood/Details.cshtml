@@ -1,0 +1,64 @@
+﻿@model DSS_LastVersion.Models.Brotherhood
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Brotherhood</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BrotherhoodName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BrotherhoodName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BrotherhoodLevel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BrotherhoodLevel)
+        </dd>
+         <dd class="col-sm-10">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Members
+                        </th>
+                         <th>
+                            Rank
+                        </th>
+                 
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Assassins)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AssassinName)
+                            </td>
+                             <td>
+                                @Html.DisplayFor(modelItem => item.AssassinRank)
+                            </td>
+                     
+                            <td>
+                                <a asp-controller="Assassin" asp-action="Delete" asp-route-id="@item.AssassinID">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.BrotherhoodId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

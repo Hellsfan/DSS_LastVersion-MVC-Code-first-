@@ -1,0 +1,80 @@
+﻿@model DSS_LastVersion.Models.Assassin
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Assassin</h4>
+
+    <hr />
+     <th class = "rounded-circle">
+           <img src="@Model.image" style="width:150px;height:150px;">
+        </th>
+    <dl class="row">
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AssassinName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AssassinName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AssassinRank)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AssassinRank)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Brotherhoods)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Brotherhoods.BrotherhoodName)
+        </dd>
+         <dd class="col-sm-10">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Missions
+                        </th>
+                         <th>
+                            Target
+                        </th>
+                        <th>
+                            Mission Level
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Contracts)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Missions.MissionName)
+                            </td>
+                             <td>
+                                @Html.DisplayFor(modelItem => item.Missions.Target)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Missions.MissionLevel)
+                            </td>
+                     
+                            <td>
+                                <a asp-controller="Contract" asp-action="Delete" asp-route-id="@item.ContractID">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.AssassinID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

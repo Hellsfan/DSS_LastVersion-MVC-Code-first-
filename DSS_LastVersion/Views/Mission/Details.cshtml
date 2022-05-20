@@ -1,0 +1,68 @@
+﻿@model DSS_LastVersion.Models.Mission
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Mission</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MissionName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MissionName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MissionLevel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MissionLevel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Target)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Target)
+        </dd>
+         <dd class="col-sm-10">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Assassins
+                        </th>
+                         <th>
+                            Assassin Rank
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Contracts)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Assassins.AssassinName)
+                            </td>
+                             <td>
+                                @Html.DisplayFor(modelItem => item.Assassins.AssassinRank)
+                            </td>
+                            <td>
+                                <a asp-controller="Contract" asp-action="Delete" asp-route-id="@item.ContractID">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.MissionID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DSS_LastVersion.Models.Assassin>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Assassins</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AssassinName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssassinRank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brotherhoods)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssassinName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssassinRank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brotherhoods.BrotherhoodName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AssassinID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AssassinID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AssassinID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
